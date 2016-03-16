@@ -1,0 +1,66 @@
+<!Doctype html>
+<html>
+<head>
+<style type="text/css">
+
+.gallerycontainer{
+position: relative;
+/*Add a height attribute and set to largest image's height to prevent overlaying*/
+}
+
+.thumbnail img{
+border: 1px solid white;
+margin: 0 5px 5px 0;
+
+}
+.thumbnail{
+-webkit-transition: all 0.5s ease;
+     -moz-transition: all 0.5s ease;
+       -o-transition: all 0.5s ease;
+      -ms-transition: all 0.5s ease;
+          transition: all 0.5s ease;
+}
+.thumbnail:hover{
+background-color: #90caf9;
+ border-radius: 50%;
+  -webkit-transform: rotate(360deg);
+     -moz-transform: rotate(360deg);
+       -o-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+          transform: rotate(360deg);
+
+}
+
+.thumbnail:hover img{
+border: 1px solid white;
+
+
+}
+
+
+}
+
+</style>
+</head>
+<body>
+<h3 class="black-text">Writing Items available in the store</h3>
+<div class="gallerycontainer">
+
+<a class="thumbnail  " target="_blank" href="images/ballpen.jpg"><img src="images/ballpen.jpg" style="border-radius:100px" width="300px" height="100px" border="0" /><span>BALLPEN</span></a>
+
+<a class="thumbnail  " target="_blank" href="images/glitter.jpg"><img src="images/glitter.jpg" width="150px" height="100px" border="0" /><span>GLITTER</span></a> 
+
+<a class="thumbnail  " target="_blank" href="images/marker.jpg"><img src="images/marker.jpg" width="170px" height="100px" border="0" /><span>MARKER</span></a>
+
+<a class="thumbnail  " target="_blank" href="images/gelpen.jpg"><img src="images/gelpen.jpg" width="130px" height="100px" border="0" /><span>GELPEN</span></a> 
+
+<a class="thumbnail  " target="_blank" href="images/chalk.jpg"><img src="images/chalk.jpg" width="150px" height="100px" border="0" /><span>CHALK PIECES</span></a>
+
+<a class="thumbnail " target="_blank" href="images/highlighter.jpg"><img src="images/highlighter.jpg" width="170px" height="100px" border="0" /><span>HIGHLIGHTER</span></a> 
+
+</div>
+
+
+
+</body>
+</html>

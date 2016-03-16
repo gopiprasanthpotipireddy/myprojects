@@ -1,0 +1,177 @@
+<?php
+$product_fields=array('price','state','manufacturing_date','expiry_date','quantity');
+$parent_category='root';
+class Table
+{
+	function __construct()
+	{
+		$this->createDatabase();
+		$database=$GLOBALS['database'];
+		$connect=$GLOBALS['connect'];
+		mysqli_select_db($connect,$database);
+		$this->createCategoryTable();
+		$this->createProductsTable();
+		$this->createCategoryFieldsTable();
+		$this->createOperationLogs();
+		$this->createCustomerTable();
+		$this->createOrderTable();
+		$this->createTransactionTable();
+		$this->createSellerTable();
+		$this->createReturnsTable();
+	}
+	function createDatabase()
+	{
+		$database=$GLOBALS['database'];
+		$connect=$GLOBALS['connect'];
+		$query="SHOW DATABASES LIKE '$database'";
+		$retval=mysqli_query($connect,$query);
+		if(!$retval)
+			die('Database Creation Error Database Exist');
+		$create="create DATABASE $database";
+		$retval=mysqli_query($connect,$create);
+		if(!$retval)
+			die('Database Creation Error'.mysqli_error($connect));
+	}
+	function createCategoryTable()
+	{
+		$parent_category=$GLOBALS['parent_category'];
+		$query="create table category(".
+		"parent varchar(225) NOT NULL DEFAULT '$parent_category',".
+		"category_name varchar(225) NOT NULL,".
+		"category_id varchar(225),".
+		"flag varchar(6) NOT NULL,".
+		"primary key(category_id));";
+		$connect=$GLOBALS['connect'];
+		$retval=mysqli_query($connect,$query);
+		if(!$retval)
+			die('Category Table Creation Error-'.mysqli_error($connect));
+	}
+	function createProductsTable()
+	{
+		$query="create table products(".
+		"category_id varchar(225),".
+		"product_id varchar(225),".
+		"product_name varchar(225) NOT NULL,".
+		"product_description varchar(225) NOT NULL,";
+		$product_fields=$GLOBALS['product_fields'];
+		foreach($product_fields as $fields)
+		{
+				$query.="$fields varchar(225),";
+		}
+		$query.="primary key(product_id),".
+		"foreign key(category_id) REFERENCES category(category_id));";
+		$connect=$GLOBALS['connect'];
+		$retval=mysqli_query($connect,$query);
+		if(!$retval)
+			die('Product Table Creation Error-'.mysqli_error($connect));
+	}	
+	function createCategoryFieldsTable()
+	{
+		$query="create table category_fields(".
+		"category_id varchar(225),".
+		"fields varchar(225),".
+		"foreign key(category_id) REFERENCES category(category_id));";
+		$connect=$GLOBALS['connect'];
+		$retval=mysqli_query($connect,$query);
+		if(!$retval)
+			die('Category Fields Table Creation Error-'.mysqli_error($connect));
+	}
+	function createOperationLogs()
+	{
+		$query="create table operation_logs(".
+		"operation_id varchar(225),".
+		"operation_name varchar(225) NOT NULL,".
+		"operation_date varchar(225) NOT NULL,".
+		"updation_details varchar(225) NOT NULL,".
+		"primary key(operation_id));";
+		$connect=$GLOBALS['connect'];
+		$retval=mysqli_query($connect,$query);
+		if(!$retval)
+			die('Operation Log Table Creation Error-'.mysqli_error($connect));
+	}
+	function createCustomerTable()
+	{
+		$query="create table customer_details(".
+		"customer_id varchar(225),".
+		"first_name varchar(225),".
+		"middle_name varchar(225),".
+		"last_name varchar(225),".
+		"email varchar(225) NOT NULL UNIQUE,".
+		"address varchar(225) NOT NULL,".
+		"password varchar(225) NOT NULL,".
+		"primary_phone_number varchar(12) NOT NULL UNIQUE,".
+		"secondary_phone_number varchar(12),".
+		"credit_card varchar(225),".
+		"debit_card varchar(225),".
+		"wallet varchar(225),".
+		"cart_details varchar(225),".
+		"wish_list varchar(225),".
+		"primary key(customer_id));";
+		$connect=$GLOBALS['connect'];
+		$retval=mysqli_query($connect,$query);
+		if(!$retval)
+			die('Customer Table Creation Error-'.mysqli_error($connect));
+	}
+	function createOrderTable()
+	{
+		$query="create table orders(".
+		"order_id varchar(225),".
+		"product_id varchar(225),".
+		"customer_id varchar(225),".
+		"phone_number varchar(225) NOT NULL,".
+		"address varchar(225) NOT NULL,".
+		"status varchar(225) NOT NULL,".
+		"type_of_delivery varchar(12) NOT NULL,".
+		"expected_date varchar(225) NOT NULL,".
+		"order_date varchar(225) NOT NULL,".
+		"foreign key(product_id) REFERENCES products(product_id),".
+		"foreign key(customer_id) REFERENCES customer_details(customer_id),".
+		"primary key(order_id));";
+		$connect=$GLOBALS['connect'];
+		$retval=mysqli_query($connect,$query);
+		if(!$retval)
+			die('Order Table Creation Error-'.mysqli_error($connect));
+	}
+	function createTransactionTable()
+	{
+		$query="create table transaction_logs(".
+		"transaction_id varchar(225),".
+		"operation varchar(225) NOT NULL,".
+		"transaction_date varchar(225) NOT NULL,".
+		"status varchar(100) NOT NULL DEFAULT 'incomplete',".
+		"primary key(transaction_id))";	
+		$connect=$GLOBALS['connect'];
+		$retval=mysqli_query($connect,$query);
+		if(!$retval)
+			die('Transaction Table Creation Error-'.mysqli_error($connect));
+	}
+	function createSellerTable()
+	{
+		$query="create table sellers(".
+		"seller_id varchar(225),".
+		"name varchar(225) NOT NULL,".
+		"address varchar(225) NOT NULL,".
+		"email varchar(225) NOT NULL,".
+		"phone_number varchar(225) NOT NULL,".
+		"primary key(seller_id))";	
+		$connect=$GLOBALS['connect'];
+		$retval=mysqli_query($connect,$query);
+		if(!$retval)
+			die('Sellers Table Creation Error-'.mysqli_error($connect));
+	}
+	function createReturnsTable()
+	{
+		$query="create table returns(".
+		"return_id varchar(225),".
+		"order_id varchar(225),".
+		"status varchar(100) NOT NULL,".
+		"returned_date varchar(225) NOT NULL,".
+		"foreign key(order_id) REFERENCES orders(order_id),".
+		"primary key(return_id));";
+		$connect=$GLOBALS['connect'];
+		$retval=mysqli_query($connect,$query);
+		if(!$retval)
+			die('Return Table Creation Error-'.mysqli_error($connect));
+	}
+}
+?>	

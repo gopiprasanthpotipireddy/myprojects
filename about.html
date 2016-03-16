@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 4.4.6.3 (Linux)"/>
+	<meta name="author" content="MY PC"/>
+	<meta name="created" content="2016-02-19T13:43:00"/>
+	<meta name="changedby" content="MY PC"/>
+	<meta name="changed" content="2016-02-19T14:05:00"/>
+	<meta name="AppVersion" content="12.0000"/>
+	<meta name="DocSecurity" content="0"/>
+	<meta name="HyperlinksChanged" content="false"/>
+	<meta name="LinksUpToDate" content="false"/>
+	<meta name="ScaleCrop" content="false"/>
+	<meta name="ShareDoc" content="false"/>
+	<style type="text/css">
+		@page { size: 21.59cm 27.94cm; margin: 2.54cm }
+		p { margin-bottom: 0.25cm; direction: ltr; line-height: 120%; text-align: left; orphans: 2; widows: 2 }
+	</style>
+</head>
+<body lang="en-US" dir="ltr">
+<p align="center" style="margin-bottom: 0.35cm; line-height: 115%"><font size="6" style="font-size: 28pt">STOCK
+REGISTER TRACKING SYSTEM</font></p>
+<p align="center" style="margin-bottom: 0.35cm; line-height: 115%"><br/>
+<br/>
+
+</p>
+<p style="margin-bottom: 0.35cm; line-height: 115%"><font face="Times New Roman, serif"><u>Abstract</u></font></p>
+<p style="margin-bottom: 0.35cm; line-height: 115%"><br/>
+<br/>
+
+</p>
+<p style="text-indent: 1.27cm; margin-bottom: 0.35cm; line-height: 115%">
+<font face="Times New Roman, serif">This paper describes the </font><font face="Times New Roman, serif"><i>
+Stock Register Tracking System</i></font><font face="Times New Roman, serif">
+sufficiently to determine the feasibility and usability of a finished
+system.  The core concept is to track the no of items from the
+department with additional features for interpreting the data.  It
+uses a client-server model with a connected database to allow
+multiple departments and databases to be connected.  This allows for
+later expansion while still supporting the targeted small businesses.</font></p>
+<p style="margin-bottom: 0.35cm; line-height: 115%"><font face="Times New Roman, serif"><u>1.
+Operational Concepts</u></font></p>
+<p style="margin-bottom: 0.35cm; line-height: 115%"><br/>
+<br/>
+
+</p>
+<p style="text-indent: 1.27cm; margin-bottom: 0.35cm; line-height: 115%">
+<font face="Times New Roman, serif">The </font><font face="Times New Roman, serif"><i>Stock
+Register Tracking System</i></font><font face="Times New Roman, serif">
+is a real-time inventory database capable of connecting multiple
+departments.  This can be used to track the inventory of a single
+department, or to manage the distribution of stock between several
+branches of a larger college or university.  However, the system
+merely records sales and restocking data and provides notification of
+low stock at any location through email at a specified interval.  The
+goal is to reduce the strain of tracking rather than to handle all
+store maintenance.  Further features may include the ability to
+generate reports of sales, but again the interpretation is left to
+the management.  In addition, since theft does occasionally occur,
+the system provides solutions for confirming the store inventory and
+for correcting stock quantities.</font></p>
+<p style="margin-bottom: 0.35cm; line-height: 115%"><br/>
+<br/>
+
+</p>
+<p style="margin-bottom: 0.35cm; line-height: 115%"><font face="Times New Roman, serif"><u>2.
+System Requirements</u></font></p>
+<p style="margin-bottom: 0.35cm; line-height: 115%"><br/>
+<br/>
+
+</p>
+<p style="text-indent: 1.27cm; margin-bottom: 0.35cm; line-height: 115%">
+<font face="Times New Roman, serif">The </font><font face="Times New Roman, serif"><i>Stock
+Register Tracking System</i></font><font face="Times New Roman, serif">
+uses a web-based interface to display inventory data to the stock
+manager client.  The product will use of open-source software
+primarily due to cost of implementation.  A PHP servlet will be
+hosted by a Wamp web server (on top of any choice of operating
+system, although a flavor of Unix is recommend).  The first feature
+of the Stock Manager Client web interface component allows the Stock
+Manager Client to view the current stock of products, along with the
+capabilities of searching and sorting the products.  The second
+feature of the Stock Manager Client web interface will allow the user
+to modify application settings, such as the threshold for email
+notifications, frequency of inventory scans (daily at a particular
+hour, weekly, monthly, etc.), and security settings.  The third
+feature of the Stock Manager Client web interface will allow the user
+to update the inventory during the restocking process.  Since a web
+interface will be used, a network that supports the HTTP/HTTPS
+protocol must exist, whether it is a private network for an isolated
+customer deployment or an Internet connection for a multi-site
+customer deployment.  The bandwidth of the network depends on the
+frequency of transactions.  A bandwidth of at least 10 Mbps is
+recommended (small commercial deployment).  The database to store the
+inventory data will use a MySQL database.</font></p>
+<p style="margin-bottom: 0.35cm; line-height: 115%"><font face="Times New Roman, serif">	Since
+the software and hardware resources of cash registers are not
+available due to the variation in software and cost, we will be
+developing an emulated Register client to interface with actual cash
+registers.  The Cash Register client will emulate purchases by having
+a simple graphical interface with fields for a quantity and a button
+to make a purchase. As these resources become available, the actual
+implementation for specific cash register models will be considered
+for future releases of the </font><font face="Times New Roman, serif"><i>Stock
+Register Tracking System</i></font><font face="Times New Roman, serif">.</font></p>
+<p style="margin-bottom: 0.35cm; line-height: 115%"><font face="Times New Roman, serif">	Alternatively,
+commercially licensed products are available.  In particular, the
+Microsoft ASP.NET (Active Server Pages) framework can be used.  This
+requires a Microsoft ASP.NET web server and a Microsoft SQL Server
+database, which also requires a Microsoft operating system.  However,
+these alternative system requirements will increase the overall costs
+for both implementation and deployment.</font></p>
+<p style="margin-bottom: 0.35cm; line-height: 115%"><br/>
+<br/>
+
+</p>
+<p style="margin-bottom: 0.35cm; line-height: 115%"><br/>
+<br/>
+
+</p>
+</body>
+</html>

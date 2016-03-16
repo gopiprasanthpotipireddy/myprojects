@@ -1,0 +1,62 @@
+<?php
+$admin_user='bhargav';
+$admin_password='';
+class Users
+{
+	function __construct()
+	{
+		$admin_user=$GLOBALS['admin_user'];
+		$admin_password=$GLOBALS['admin_password'];
+		$this->create_admin($admin_user,$admin_password);
+		$this->create_guest();
+	}
+	function create_admin($username,$password)
+	{
+		$server=$GLOBALS['server'];
+		$database=$GLOBALS['database'];
+		$connect=$GLOBALS['connect'];
+		$check_user="SELECT * FROM mysql.user WHERE user = '$username'";
+		$retval=mysqli_query($connect,$check_user);
+		if($retval)
+			die('User Exist');
+		$create="CREATE USER '$username'@'$server' IDENTIFIED BY '$password'";
+		$retval=mysqli_query($connect,$create);
+		if(!$retval)
+			die('Customer Account Error'.mysqli_error($connect));
+		$permissions="GRANT ALL PRIVILEGES ON * . * TO '$username'@'$server'";
+		$retval=mysqli_query($connect,$permissions);
+		if(!$retval)
+			die('Customer Account Privileges Error');
+		$final="FLUSH PRIVILEGES;";
+		$retval=mysqli_query($connect,$final);
+		if(!$retval)
+			die('Customer Account Finishing Error');
+	}
+	function create_guest($username='guest',$password="")
+	{
+		$server=$GLOBALS['server'];
+		$database=$GLOBALS['database'];
+		$connect=$GLOBALS['connect'];
+		$create="CREATE USER '$username'@'$server' IDENTIFIED BY '$password'";
+		$retval=mysqli_query($connect,$create);
+		if(!$retval)
+			die('Customer Account Error');
+		$read_table=array('category','products','category_fields','customer_details');
+		foreach($read_table as $table)
+		{
+			$permissions="GRANT SELECT ON $database.$table TO '$username'@'$server'";
+			$retval=mysqli_query($connect,$permissions);
+			if(!$retval)
+				die('Guest Account Read Privileges Error');
+		}
+		$permissions="GRANT INSERT ON $database.customer_details TO '$username'@'$server'";
+		$retval=mysqli_query($connect,$permissions);
+		if(!$retval)
+			die('Guest Account Read Privileges Error');
+		$final="FLUSH PRIVILEGES;";
+		$retval=mysqli_query($connect,$final);
+		if(!$retval)
+			die('Customer Account Finishing Error');
+	}
+}
+?>	
