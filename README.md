@@ -1,2 +1,2 @@
 # myprojects
-this project is for college stock tracking .
+this project is for college stock tracking.
